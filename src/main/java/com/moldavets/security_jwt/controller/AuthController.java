@@ -2,11 +2,10 @@ package com.moldavets.security_jwt.controller;
 
 import com.moldavets.security_jwt.dto.JwtRequest;
 import com.moldavets.security_jwt.dto.JwtResponse;
-import com.moldavets.security_jwt.excpetion.ExceptionModel;
+import com.moldavets.security_jwt.exception.ExceptionModel;
 import com.moldavets.security_jwt.service.UserService;
 import com.moldavets.security_jwt.util.JwtTokenUtils;
 import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthController {
-    UserService userService;
-    JwtTokenUtils jwtTokenUtils;
-    AuthenticationManager authenticationManager;
+
+    private UserService userService;
+    private JwtTokenUtils jwtTokenUtils;
+    private AuthenticationManager authenticationManager;
 
     @Autowired
     public AuthController(UserService userService,
@@ -54,7 +53,5 @@ public class AuthController {
         String token = jwtTokenUtils.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
     }
-
-
 }
 

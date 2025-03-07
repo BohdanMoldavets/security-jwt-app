@@ -3,6 +3,7 @@ package com.moldavets.security_jwt.service;
 import com.moldavets.security_jwt.entity.User;
 import com.moldavets.security_jwt.repository.RoleRepository;
 import com.moldavets.security_jwt.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -10,13 +11,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Component
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
@@ -27,7 +27,6 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username);
     }
 
-
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -36,7 +35,7 @@ public class UserService implements UserDetailsService {
         ));
 
         return new org.springframework.security.core.userdetails.User(
-                user.getName(),
+                user.getUsername(),
                 user.getPassword(),
                 user.getRoles().stream()
                         .map(role -> new SimpleGrantedAuthority(role.getName()))

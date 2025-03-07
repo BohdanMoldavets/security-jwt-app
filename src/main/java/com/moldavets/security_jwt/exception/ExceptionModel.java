@@ -1,4 +1,4 @@
-package com.moldavets.security_jwt.excpetion;
+package com.moldavets.security_jwt.exception;
 
 import lombok.AccessLevel;
 import lombok.Data;
