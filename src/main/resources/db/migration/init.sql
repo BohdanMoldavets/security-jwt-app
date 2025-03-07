@@ -18,8 +18,8 @@ VALUES
 
 INSERT INTO users(username, password, email)
 VALUES
-('user', '', 'user@gmail.com'), -- todo crypt password
-('admin', '', 'admin@gmail.com');
+('user', '$2a$12$x8xjQPE5F/yhtf3e48qwF.EbekQoqa21W60YanjNBe/sNbVgLfmzG', 'user@gmail.com'), -- todo crypt password
+('admin', '$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i', 'admin@gmail.com');
 
 CREATE TABLE users_roles {
     user_id INT NOT NULL,
