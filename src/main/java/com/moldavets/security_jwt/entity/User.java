@@ -17,7 +17,7 @@ public class User {
     @Column(name = "id")
     Long id;
 
-    @Column(name = "name")
+    @Column(name = "username")
     String username;
 
     @Column(name = "password")
@@ -28,7 +28,7 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-            name = "users_rolse",
+            name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
